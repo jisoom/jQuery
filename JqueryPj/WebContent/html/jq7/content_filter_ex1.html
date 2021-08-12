@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		div {
+			width: 500px;
+			height: 30px;
+			border: 1px solid green;
+		}
+
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("span:contains(jQuery)").css("border", "3px solid blue");
+			//$("span:not(:contains(jQuery))").css("border", "3px dotted red");
+			$("span").not(":contains(jQuery)").css("border", "3px dotted red");
+			$("div:has(span, p)").css("border", "3px solid green");
+			$("div:empty").css("border", "3px solid orange");
+			$("div span").css("font-weight", "bold").css("color", "red");
+			$("div:parent").css("font-weight", "bold").css("font-size", "1.5em");
+		});
+	</script>
+</head>
+<body>
+	<div></div>
+	<br>
+	<div>
+		헬로우~~
+		<span>오늘도 즐겁게~ 열심히!</span>
+	</div>
+	<br>
+	<p>
+		Hello jQuery! 
+		<span>Thanks, jQuery!</span>
+	</p>
+	<br>
+	<div>
+		jQuery!
+		<!-- <p>안뇽</p> --> <!-- p를 가지는 div 2px solid green으로 보더 바뀜 --> 
+	</div>	
+	<br>
+	<span>쉬운 jQuery~~!</span>
+	<br>
+	<div></div>
+	
+</body>
+</html>

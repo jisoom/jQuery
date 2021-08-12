@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		function setResult(flag) {
+			var result;
+			if(flag == 1) {
+				result = $("p" , "div").html(); 
+				//첫번째 p태그안에 내용만 나옴 ==> div안에 있는 p태그안에 내용만 나옴
+			}else {
+				result = $("p").text(); 
+				//전체가 나옴 (글자 효과 다 없어짐)
+			}
+//			document.getElementById("result").innerHTML = result;
+			$("#result").html(result);
+//			$("#result").text(result);
+			//() ==> get, (result) ==> set
+			
+			
+			//반복문1) javascript 방식
+/* 			var objs = $("p");
+			for(var i=0; i<objs.length; i++) {
+				objs[i];
+			} */
+			
+			//반복문2)
+			$("p").each(function (index, item) { //objs.each도 가능
+				console.log("===================시작");
+				console.log(index);
+				console.log(item);
+				console.log("=====================끝");
+			});
+			
+			//반복문3)
+			$.each(objs, function (index, item) {
+				
+			})
+		}
+	</script>
+</head>
+<body>
+	<p>동해물과 <em>백두산</em>이</p>
+	<p>마르고 닳도록 </p>
+	<div>
+		<p><strong>하느님이</strong> 보우하사 </p>
+		<p>우리 나라 만세</p>
+	</div>
+	
+	<button type="button" onclick="setResult(1)">html()</button>
+	<button type="button" onclick="setResult(2)">text()</button>
+	<hr>
+	<div id="result" style="height: 50px; border: 1px solid;">
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>class()</title>
+	<style type="text/css">
+		.demo {
+			font-size: 1.5em;
+			color: red;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			
+			//p태그에 마우스오버 이벤트 바인딩
+			$("p").mouseover(function () {
+				//demo 클래스 추가
+				$(this).addClass("demo");
+			});
+			
+			//p태그에 마우스아웃 이벤트 바인딩
+			$("p").mouseout(function () {
+				//demo 클래스 제거
+				$(this).removeClass("demo");
+			});
+			
+			//p태그에 on으로 마우스오버, 마우스 아웃 이벤트 동시에 바인딩
+			$("h3").on("mouseover mouseout", function () {
+				//오버일때 생기고 아웃일때 사라짐
+				$(this).toggleClass("demo");
+			});
+		})
+	</script>
+</head>
+<body>
+	<h3>마우스를 올려보세요</h3>
+	<p>마우스를 올려보세요</p>
+</body>
+</html>

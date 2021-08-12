@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		div {
+			border: 5px solid gold;
+			width: 100%;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			
+			$("p").click(function () {
+				var objParent = $(this).parent(); //부모
+				var pClone = $(this).clone(); //복사
+				
+				//색상 랜덤으로 만들기
+			  	var r = parseInt(Math.random() *256);
+			  	var g = parseInt(Math.random() *256);
+			  	var b = parseInt(Math.random() *256);
+			  	
+				var rgb = "rgb(" + r + "," + g + "," + b + ")"; 
+				
+				if(objParent.is("div:nth-of-type(1)")) {
+					pClone.css("color", rgb); //색상 변경
+					objParent.append(pClone); //뒤에 붙여넣기
+					
+				}else if(objParent.is("div:nth-of-type(2)")){
+					pClone.css("color", rgb); //색상 변경
+					objParent.prepend(pClone); //앞에 붙여넣기
+					
+				}else {
+					alert("작업대상이 아닙니다.");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<p>무궁화 꽃이 피었습니다</p>
+	</div>
+	
+	<p>선호는 예쁘다~</p>
+	
+	<div>
+		<p>사뿐히 즈려밟고 가시옵소서</p>
+	</div>
+</body>
+</html>

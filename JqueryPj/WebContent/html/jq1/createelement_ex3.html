@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+
+		 $(document).ready(function () {
+			 
+			$("<button>", {
+				"type" : "button"
+				,"click" : addImg //이벤트는 함수로 써줘야함 function이름으로 써줌 addImg()로 하면 값을 리턴함
+				,"text" : "이미지추가"
+			}).appendTo("body");
+			
+		});
+		
+		
+
+		function addImg() {
+			
+			$("<img>", {
+				"alt" : "tiger"
+				,"src" : "../../images/tiger.jpg"
+				,"width" : "200px"
+				,"height" : "150px"
+				,"click" : function () {
+					$(this).css("border", "2px solid red");
+				}
+			}).appendTo("body");
+
+		} 
+	
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>:enabled, :disabled</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$(":enabled" , "#ex1").css("border", "2px solid blue");
+			$(":disabled", "#ex1").css("border", "2px solid red");
+			
+		});
+		
+		
+	</script>
+</head>
+<body>
+	<form id="ex1">
+		<input type="text"><br>
+		<input type="password"><br>
+		<select name="disSelect" disabled="disabled">
+			<option>--선택--</option>
+		</select>
+		<br>
+		<textarea name="enTextarea" rows="10" cols="20">text</textarea>
+		<br>
+		<input type="button" value="확인" disabled="disabled">
+		<br>
+	</form>
+
+	
+</body>
+</html>

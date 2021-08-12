@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		function init() {
+			document.getElementsByTagName("body")[0].style.color = 'pink';
+		}
+		
+		function changeColor() {
+			//document.getElementsByTagName("body")
+			//$("body");
+			// ==> <body> 요소를 가지고 옴(return)
+			$("body").css("color", "green");
+			// = document.getElementsByTagName("body")[0].style.color = 'green';
+		}
+		
+		//$(document) ==> document를 JQ객체로 변환
+		$(document).ready(function () {
+			alert("준비완료");
+			$("body").css("color", "red");
+			//...
+		});
+		
+		
+	</script>
+</head>
+<body onload="init()" onclick="changeColor();">
+	하이 JQUERY~
+</body>
+<script type="text/javascript">
+	document.getElementsByTagName("body")[0].style.backgroundColor = 'yellow';
+</script> 
+</html>

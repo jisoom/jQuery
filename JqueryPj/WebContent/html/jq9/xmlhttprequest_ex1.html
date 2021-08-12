@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>XMLHttpRequest 객체 사용하기</title>
+	<script type="text/javascript">
+	
+		/*************************************************/
+		// 1) XMLHttpRequest 객체 생성
+		var xhttp = new XMLHttpRequest();
+		// ==> xhttp.readyState : 0
+		/*************************************************/
+		// 3) 서버로부터 응답 처리 
+		xhttp.onreadystatechange = function () {
+			//서버가 데이터를 전부 받아서, 처리 결과가 성공일 때
+			if(this.readyState == 4 && this.status == 200) {
+				var result = this.responseText;
+				console.log(result);
+				
+				//결과가 JSON 타입인 경우
+				var objResult = JSON.parse(result);
+			}
+		};
+		// 2) 서버로 요청
+		//2-1) GET 방식으로 호출 - url 뒤에 데이터를 붙여서 보냄
+		xhttp.open("GET", "test.jsp?name=아이유&age=30", true); //GET방식, 비동기로 'test.jsp'에 연결해주시오 라는 의미
+		// ==> xhttp.readyState : 1
+		xhttp.send(); //요청하기(요청 보내기, 데이터 보내기)
+		// ==> xhttp.readyState : 2
+		
+		//2-2) POST 방식으로 호출 - header에 데이터를 담아서 보냄
+		xhttp.open("POST", "test.jsp", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("name=아이유&age=30");
+		/*************************************************/
+		//서버가 데이터를 받는중이면 ==> xhttp.readyState : 3
+		//서버가 데이터를 다 받았으면 ==> xhttp.readyState : 4
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

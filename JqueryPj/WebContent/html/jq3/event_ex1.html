@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function () {
+			
+			$("p").click(function (e) {
+				console.log(e); // 이벤트 전체
+				console.log(e.type); //아벤트 타입 : click
+				console.log(e.target); //이벤트 타겟 : 누른 p태그
+				console.log(e.button); //눌러진 마우스 버튼 : 0왼쪽, 1중간,2오른쪽
+				console.log(e.pageX); //문서기준 마우스의 x좌표
+				console.log(e.pageY); //문서기준  마우스의 y좌표
+				console.log(e.screenX); //화면기준 마우스의 x좌표
+				console.log(e.screenY); //화면기준 마우스의 y좌표
+			});
+			
+ 			$("#tmp1").mouseenter(function () { //마우스가 경계 외부에서 내부로 이동시
+				$(this).css("background-color", "lightskyblue");
+			});
+			
+			$("#tmp1").mouseleave(function () { //마우스가 경계 내부에서 외부로 이동시
+				$(this).css("background-color", "palegreen");
+			}); 
+			
+/* 			$("#tmp1").hover(function () { //mouseenter + mouseleave
+				$(this).css("background-color", "palegreen");
+			}, function () {
+				$(this).css("background-color", "lightskyblue");
+			}); */
+			
+			//on으로 이벤트 여러개 부여
+			$("#tmp2").on({
+				mouseenter : function () {
+					$(this).css("background-color", "lightyellow");
+				}
+				, mouseleave : function () {
+					$(this).css("background-color", "tomato");
+				}
+			});
+			
+			$("#tmpDiv, #tmpButton").on({
+				mousedown : function (e) { //마우스 버튼 누를 때
+					var result = "type :" + e.type + "\n"
+								+"target :" + e.target + "\n"
+								+"pageX :" + e.pageX + "\n"
+								+"pageY :" + e.pageY + "\n"
+								+"screenX :" + e.screenX + "\n"
+								+"screenY :" + e.screenY + "\n"
+								+"button :" + e.button;
+								
+					alert(result);
+				}
+			});
+			
+			$("#tmpDiv2").mousemove(function (e) {
+				var result = "pageX :" + e.pageX
+				 			+"pageY :" + e.pageY
+				 			+"screenX :" + e.screenX
+				 			+"screenY :" + e.screenY;
+				$("#tmpDiv2").text(result);
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<p>JQUERY 이벤트를 배워봅시다</p>
+	<p id="tmp1">이벤트</p>
+	<p id="tmp2">on이벤트</p>
+	
+	<br><br><br>
+	
+	<div id="tmpDiv" style="width: 300px; height: 250px; background-color: yellow;"></div>
+	<br>
+	<button id="tmpButton" type="button">버튼</button>
+	
+	<div id="tmpDiv2" style="height: 100px; border: 1px solid;"></div>
+	<br><br><br>
+	
+	
+</body>
+</html>

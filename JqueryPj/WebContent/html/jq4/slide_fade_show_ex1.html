@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		hr {
+			border-color: red;
+		}
+		div {
+			width: 300px;
+			height: 300px;
+		}
+		img {
+			width: 100%;
+			height: 300px;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function () {
+			$("a").click(function (e) {
+				e.preventDefault();
+				proc(e.target);
+			}); 
+		});
+	
+		function proc(target) { 
+			
+			if(target.id == "tag1") {
+				$("img").slideUp(function () {
+					//document.getElementById("img1").src = target.href;
+					$("#img1").attr("src", target.href);
+					$("img").slideDown();
+				});
+			}else if(target.id == "tag2") {
+				$("img").fadeOut(function () {
+					//document.getElementById("img1").src = target.href;
+					$("#img1").attr("src", target.href);
+					$("img").fadeIn();
+				});
+			}else if(target.id == "tag3") {
+				$("img").hide(function () {
+					//document.getElementById("img1").src = target.href;
+					$("#img1").attr("src", target.href);
+					$("img").show("slow");
+				});
+			}else {
+				return;
+			}
+		}
+	</script>
+</head>
+<body>
+	<h2>교재목록</h2>
+	<ul>
+		<li><a id="tag1" href="../../images/dog1.jpg">강아지</a></li>
+		<li><a id="tag2" href="../../images/cat.jpg">고양이</a></li>
+		<li><a id="tag3" href="../../images/tulip.jpg">튤립</a></li>
+	</ul>
+	<hr>
+	<div>
+		<img id="img1" src="../../images/tiger.jpg" alt="호랑이">
+	</div>
+</body>
+</html>

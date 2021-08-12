@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>XMLHttpRequest 객체 사용하기</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+
+</head>
+<body>
+	<!-- <button type="button" onclick="setGetByAsynch()">GET 비동기 전송</button> -->
+	<button type="button" onclick="setGet(true)">GET 비동기 전송</button>
+	<button type="button" onclick="setGet(false)">GET 동기 전송</button>
+	<br><br>
+	<button type="button" onclick="setPost(true)">POST 비동기 전송</button>
+	<button type="button" onclick="setPost(false)">POST 동기 전송</button>
+	<hr>
+	<div id="result"></div>
+</body>
+<script type="text/javascript">
+
+	var url = "json_basic.html"; // url 변수로 두기
+	
+	function setGet(isAsynch) {
+		var xhttp = new XMLHttpRequest(); //객체 생성
+		
+		//비동기 방식일 경우 'onreadystatechange'가 'send'뒤에 정의되었어도 정상동작
+		//하지만, 동기방식일 경우 'onreadystatechange'가 'send'뒤에 정의되면 정상동작x
+		//		동기방식이기 때문에'send'에 대한 결과를 받은 다음 'onreadystatechange'가 수행(정의)되기 때문 
+		//비동기면 실행함. 하지만, 동기면 전송하고 결과가 올때까지 기다림 그 후 실행
+		//(바뀔거 이미 바뀌고 나서 아래로 내려오기 때문에 실행 안됨 ==> open 전에 해줌)
+		
+		xhttp.onreadystatechange = function () {
+			if(this.readyState == 4 && this.status == 200) {
+				$("#result").html(this.responseText);
+			}
+		}
+		
+		//xhttp.open("GET", "json_basic.html", true); //true : GET방식, 비동기 요청
+		xhttp.open("GET", url + "?pName=hong&pId=test01", isAsynch); //true : GET방식, 비동기 요청 //열기
+		xhttp.send(); //데이터 요청
+		
+	}
+	
+	function setPost(isAsynch) {
+		var xhttp = new XMLHttpRequest();
+		
+		xhttp.onreadystatechange = function () {
+			if(this.readyState == 4 && this.status == 200) {
+				$("#result").html(this.responseText);
+			}
+		}
+		
+		xhttp.open("POST", url, isAsynch); //POST 방식
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("pName=hong&pId=test01");
+	}
+	
+</script>
+</html>

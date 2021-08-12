@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("li:first-child").css("border", "2px solid red"); // li중에 첫번째 자식인 것들
+			$("li").first().css("background-color", "yellow"); //li중 첫번째인것
+			$("li").last().css("background-color", "yellow"); //li중 마지막인것
+			$("li:last-child").css("border", "2px dotted blue"); // li중에 첫번째 자식인 것들
+			
+		})
+	</script>
+</head>
+<body>
+	<p>여자들에게 인기있는 남자들</p>
+	<ol>
+		<li>능력있는 남자</li>
+		<li>돈 많은 남자</li>
+		<li>잘 생긴 남자</li>
+		<li>프로그래머</li>
+	</ol>
+		
+	<p>남자들에게 인기있는 여자들</p>
+	<ol>
+		<li>예쁜 여자</li>
+		<li>귀여운 여자</li>
+		<li>프로그래머</li>
+	</ol>	
+</body>
+</html>

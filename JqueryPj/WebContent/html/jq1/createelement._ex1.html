@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>요소 생성하는 방법</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			//div 클릭 이벤트 부여
+			//$("div").click(asdf); ==> 함수 따로 만들어도됨
+			$("div").css("cursor", "pointer");
+			$("div").click(function () {
+				// 1) 요소 생성
+				//document.createElement("p");
+				//$("<p>짜잔~</p>");
+				var ele = $('<p class="sample">메롱</p>'); //JQUERY 객체를 생성
+				$("body").append(ele); //body에 추가
+				
+				$("<h1>헤더랍니다.</h1>").appendTo("body");
+			});
+		});
+		
+		var idx = 0;
+		function addInput() {
+			$("<input>", {
+				"id" : "userName" + idx
+				,"name" : "userName"
+				,"value" : "홍길동"
+				,"click" : function() {
+					// 글자색 변경
+					$(this).css("color", "red");
+				}
+			}).appendTo("#temp");
+			
+			idx++;
+		}
+	</script>
+</head>
+<body>
+	<div>클릭해보슈~</div>
+	<!-- div 클릭하면 <p class="sample">메롱</p> 생성하기-->
+	<input type="text" name="userName" value="홍길동" onclick="alert(1);">
+	<hr>
+	<button type="button" onclick="addInput()">클릭</button>
+	<div id="temp"></div>
+	<hr>
+</body>
+</html>

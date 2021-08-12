@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		#ex3 img {
+			height: 100px;
+		}
+		
+		#ex3 button {
+			display: none;
+		}
+		div.ex {
+			border: 2px solid #aaaaaa;
+			padding: 10px;
+			background-color: #cccccc;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+/* 			$("img").on({
+				mouseover : function(){}
+				,mouseout : function(){}
+				,dblclick : function(){
+				}
+				
+			}); */
+			
+			var orgSrc = ""; //원본 이미지 src
+			$("img").mouseover(function (e) {
+				orgSrc = e.target.src; //this.src와 같음
+				e.target.src = "../../images/flower2.jpg";
+				e.target.style.width = "100px";
+			});
+			
+			$("img").mouseout(function (e) {
+				//원래 파일로 바꾸기
+				this.src = orgSrc;
+			});
+			
+			$("img").dblclick(function () {
+				$(this).hide();
+				
+				//이미지가 다 숨겨졌으면 버튼 보이기
+				var imgCnt = $("img").length;
+				var hiddenCnt = 0;
+				
+/* 				//숨겨진 이미지 길이 찾기 방법1
+				$("img").each(function (idx, item) {
+					if($(item).css("display") == "none") {
+						hiddenCnt++;
+					}
+				}); */
+				
+				//숨겨진 이미지 길이 찾기 방법2
+				hiddenCnt = $('img[style="display: none;"]').length;
+				
+				//이미지가 전부 숨겨진 상태면
+				if(imgCnt == hiddenCnt) {
+					$("button").show();
+				}
+			});
+			
+			//버튼 클릭하면 버튼 숨기고, 이미지 보이기
+			$("button").click(function () {
+				$(this).hide();
+				$("img").show();
+			})
+			
+		});
+	</script>
+</head>
+<body>
+	<h3>마우스 이벤트 예제3</h3>
+	<p>
+	1) 마우스를 이미지 위에 올리면 다른 이미지로 변함<br>
+	2) 마우스가 나가면 원래 이미지로 변함<br>
+	3) 이미지 더블 클릭 시 이미지 사라짐<br>
+	4) 이미지가 전부 없어지면 버튼이 생김<br>
+	5) 버튼 클릭 시 버튼 사라지고 이미지가 다시 나타남
+	</p>
+	<div id="ex3" class="ex">
+		<img id="img1" alt="고양이" src="../../images/cat.jpg">
+		<img id="img2" alt="강아지1" src="../../images/dog1.jpg">
+		<img id="img3" alt="강아지2" src="../../images/dog2.jpg">
+		<button type="button">보이기</button>
+	</div>
+</body>
+</html>

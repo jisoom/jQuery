@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		
+		//이름, 전화번호, 나이, 주소, 취미, 양반, 아들
+		//자바 스크립트 객체 정의
+		var objJS = {
+			name : "홍길동"
+			,phone : "010-1234-1004"
+			,birth : "1425-12-14"
+			,age : 25
+			,addr : {
+				sido : "대전광역시"
+				,gugun : "중구"
+				,dong : "대사1동"
+				,beonji : "123번지"
+				,postCode : "12345"
+			}
+			,hobby : ["무술", "검술", "독서"]
+			,noble : false
+			,son : null
+		};
+		
+		//제이슨 객체 정의
+ 		var objJson = {
+				"name" : "홍길동"
+				,"phone" : "010-1234-1004"
+				,"age" : 25
+				,"addr" : {
+					"sido" : "대전광역시"
+					,"gugun" : "중구"
+					,"dong" : "대사1동"
+					,"beonji" : "123번지"
+					,"postCode" : "12345"
+				}
+				,"hobby" : ["무술", "검술", "독서"]
+				,"noble" : false
+				,"son" : null
+			}; 
+			//var objJson = JSON.stringify(objJS); //JSON 형식의 문자열로 반환
+			//JSON.parse(str) //문자열을 Javascript 객체로 반환
+			document.write(objJS);
+			document.write("<hr>");
+			document.write(objJson);
+			document.write("<hr color='red'>");
+			
+			function proc() {
+				//1) javascript 객체를 json string으로 변환
+				var str = JSON.stringify(objJS);
+				$("#result1").text(str);
+				//console.log(str);
+				
+				//2) string을 javascript 객체로 변환
+/*				var strTmp = "{'id' : 'test01', 'name' : '아이유'}"; //사용할 수 없음*/
+				var strTmp = '{"id" : "test01", "name" : "아이유"}';
+				//var strTmp = "{\"id\" : \"test01\", \"name\" : \"아이유\"}";
+				var obj = JSON.parse(strTmp);
+				$("#result2").text(obj);
+				//console.log(obj);
+				
+				/*********************************************/
+				var objJSON = JSON.parse(str);
+				console.log(str);
+				
+				$("#result2").text(objJSON);
+				console.log(objJSON);
+				
+				$("#name").text(objJSON.name);
+				var addr = objJSON.addr;
+				var strAddr = "[" + addr.postCode + "] " 
+							+objJSON.addr.sido + " " 
+							+objJSON.addr.gugun +" " 
+							+ objJSON.addr.dong + " " 
+							+ objJSON.addr.beonji;
+				$("#addr").text(strAddr);
+				var hobby = "";
+				for(var i =0; i < objJSON.hobby.length; i++) {
+					hobby += objJSON.hobby[i] + ", ";
+				}
+				hobby = hobby.substr(0, hobby.length - 2);
+				$("#hobby").text(hobby);
+				
+				$("#birth").text(new Date(objJSON.birth));
+				
+				
+				
+			}
+		
+	</script>
+</head>
+<body>
+	<button type="button" onclick="proc()">JSON변환 테스트</button>
+	<p>1차 변환 (obj > str) : <span id="result1"></span></p>
+	<p>2차 변환 (str > obj) : <span id="result2"></span></p>
+	<p>이름 : <span id="name"></span></p>
+	<p>주소 : <span id="addr"></span></p>
+	<p>취미 : <span id="hobby"></span></p>
+	<p>생년월일 : <span id="birth"></span></p>
+</body>
+</html>

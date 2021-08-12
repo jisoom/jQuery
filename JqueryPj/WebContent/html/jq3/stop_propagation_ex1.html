@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>EVENT객체의 stopPropagation 메소드</title>
+	<style type="text/css">
+		#div1 {
+			border:1px solid blue;
+			height: 100px;
+		}
+		#div1 p {
+			border:1px solid red;
+			height: 30px;
+			margin: 20px;
+			padding: 10px;
+		}
+		#div1 span {
+			border:1px solid green;
+		}
+		
+		#div2 {
+			width: 400px;
+			background-color: pink;
+			height: 200px;
+			overflow: auto;
+		}
+		#div2 span {
+			background-color: yellow;
+			padding: 20px;
+			margin-left: 50px; 
+			display: inline-block;
+			height: 80px;
+			/* width: 150px; */
+		}
+/* 		#div2 button {
+			display:block;
+			margin: 0 auto;
+		} */
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () { //문서가 로드되면(준비되면)
+			//div에 클릭, p에 클릭, span에 클릭 이벤트 주기
+			$("#div1").click(function () {
+				alert("div입니다.");
+			});
+		
+			$("#div1 p").click(function () {
+				alert("p입니다.");
+			});
+			
+			$("#div1 span").click(function (e) {
+				alert("span입니다.");
+				
+				//부모요소의 클릭 이벤트 실행되지 않게 하기 (span이 div와 p에 포함되기 때문에 해주지 않으면 span, p, div까지 다 됨)
+				e.stopPropagation(); //이벤트 버블링 막기
+			});
+			
+			/******************************************************************************************/
+			
+			//h1클릭 이벤트
+			$("h1").click(function () {
+				//this.style.back~
+				$(this).css("background-color", "green");
+			});
+			
+			//h1의 span클릭 이벤트
+			$("h1 span").click(function (e) {
+				$(this).css("background-color", "red");
+				e.stopPropagation();
+			});
+			
+			/******************************************************************************************/
+			
+			$("button").click(function (e) {
+				$(this).css("border", "3px solid blue");
+				e.stopPropagation();
+			});
+			
+			$("#div2 span").click(function (e) {
+				$(this).css("border", "3px solid red");
+				e.stopPropagation();
+			});
+			
+			$("#div2").click(function () {
+				$(this).css("border", "3px solid yellow");
+				$("<p>Hello~</p>").appendTo(this);
+				//$(this).append("<p>Hello~</p>");
+				//$(this).append("Hello~");
+				//$("<p>").html("Hello~").appendTo(this);
+				$("#div2 p").css("margin-left", "10px");
+			});
+			
+			$("a").click(function (e) {
+				var year = prompt("태어난 년도를 입력하세요.");
+				var currYear = parseInt(new Date().getFullYear());
+				
+				//2021-2002 =19
+				//currYear-year < 19
+				if(parseInt(year) > currYear - 19 ) {
+					e.preventDefault();
+					alert("20살 이상만 이용가능합니다.");
+				}else if(year == null) {
+ 					e.preventDefault();
+				}
+			});
+			
+/* 			$("div, span, button, a").click(function (e) {
+				if(e.target){} //이런식으로 할 수 있음
+			}) */
+		});
+		
+	</script>
+</head>
+<body>
+	<div id="div1">
+		div영역
+		<p>
+			p영역
+			<span>스팬영역</span>
+		</p>
+	</div>
+	
+	<hr>
+	
+	<h1>
+		큰 제목 안에
+		<span>작은 영역</span>
+		이 있다.
+	</h1>
+	
+	<hr>
+	
+	<div id="div2">
+		<span>
+			<button type="button">클릭하세요</button>
+		</span>
+	</div>
+	<br>
+	<hr color="red">
+	<br>
+	<a href="http://www.daum.net" target="_blank">Daum으로 이동</a>
+</body>
+</html>

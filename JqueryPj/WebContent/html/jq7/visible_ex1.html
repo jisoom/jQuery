@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>가시성(visible)</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+
+		$(function () {
+			$("#hidden").click(function () {
+				$(":hidden").each(function () {
+					alert($(this).html());
+					console.log(this);
+				});
+			});
+			
+			$("#visible").click(function () {
+				$(":visible").each(function () {
+					alert($(this).html());
+					console.log(this);
+				});
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<p>보이는 문단</p>  <!-- visible -->
+	<p style="visibility: hidden;">숨겨진 문단</p>  <!-- visible -->
+	<p style="display: none;">자리를 차지 하지 못한 문단</p> <!-- hidden -->
+	<p style="opacity: 0;">투명한 문단</p> <!-- visible -->
+	<input type="hidden" value="안보이지롱"> <!-- hidden -->
+	<div style="width: 0px; height: 0px;"></div> <!-- width, height가 0인 문단 : visible -->
+	<p style="width: 0px; height: 0px;"></p> <!-- width, height가 0인 문단 : visible -->
+	<hr>
+	<button id="hidden" type="button">hidden요소</button>
+	<button id="visible" type="button">visible요소</button>
+</body>
+</html>

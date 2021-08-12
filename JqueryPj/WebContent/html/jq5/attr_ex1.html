@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>이미지에 title 속성 부여하기</title>
+	<style type="text/css">
+		img {
+			width: 150px;
+			height: 150px;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+	
+		function addTitle() {
+			
+			//each문으로 사용하기
+ 			$("img").each(function (idx, item) {
+				var strSrc = $(item).attr("src");
+				var fileName = "";
+
+				var idx = strSrc.lastIndexOf("/"); // '/'로 잘랐을 때의 마지막 인덱스 번호
+				var str = strSrc.substr(idx + 1); //이미지 소스를 dog1.jpg처럼 자름
+				
+				idx = str.lastIndexOf("."); //dog1.jpg에서 .을 기준으로 잘랐을 때 마지막 인덱스 번호
+				fileName = str.substr(0,idx);
+				
+				$(item).attr("title", fileName);
+			});
+			
+			//for문으로 사용하기
+/* 			 var objImgs = $("img");
+			for(var i=0; i< objImgs.length; i++) {
+ 				var objImg = objImgs[i]; //img
+				
+				console.log(objImg.src); // img소스
+				//file:///D:/~/WebContent/images/tulip.jpg
+				var strSrc = objImg.src;
+				
+				var fileName = "";
+				
+				//파일명 찾기 1)
+				var idx = strSrc.lastIndexOf("/");
+				var str = strSrc.substr(idx + 1); //"dog1.jpg"
+				
+				idx = str.lastIndexOf(".");
+				fileName = str.substr(0, idx);
+				
+				//파일명 찾기 2)
+				var arr = strSrc.split("/"); // =>배열 ["~", "~", "images", "dog1.jpg"]
+				var fileFullName = arr[arr.length -1 ]; //제일 마지막꺼 dog1.jpg
+				var arr2 = fileFullName.split("."); 
+				
+				//배열 dog.1.jpg 이라면  ==> ["dog", "1", "jpg"]
+				for(var j=0; j<arr2.length -1; j++) {
+					fileName += arr2[j]+ ".";
+				}
+				//fileName : "dog.1."로 나옴
+				fileName = fileName.substr(0, fileName.length-1);
+				
+				$(objImg).attr("title", fileName);  
+				
+				
+				//.eq(i)사용하기 (for문이랑 다름)
+ 				//var title = $("img").eq(i).attr("src");
+				//var arrt = title.split("/");
+				//var arrt2 = arrt[arrt.length-1];
+				//var arrt3 = arrt2.split(".");
+				//var arrt4 = arrt3[0];
+				//$("img").eq(i).attr("title", arrt4); 
+				
+			} */
+			
+		}
+	</script>
+</head>
+<body>
+	<img alt="고양이" src="../../images/cat.jpg">
+	<img alt="강아지1" src="../../images/dog1.jpg">
+	<img alt="강아지2" src="../../images/dog2.jpg">
+	<img alt="벚꽃" src="../../images/flower2.jpg">
+	<img alt="튤립" src="../../images/tulip.jpg">
+	<br>
+	<button type="button" onclick="addTitle()">눌러보세요</button>
+</body>
+</html>

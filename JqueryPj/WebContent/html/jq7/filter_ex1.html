@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		table {
+			width: 100%;
+		}
+		table, td {
+			border: 1px solid white;
+			border-collapse: collapse;
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			
+			//필터를 권장하지 않는 first, last, eq, gt, lt 는 메서드로 사용함
+			//$("li:first, li:last").css("background-color", "yellow"); //첫번째와 마지막인것
+			$("li").first().css("background-color", "yellow");
+			$("li").last().css("background-color", "yellow");
+			
+			//$("li:eq(5)").css("background-color", "red"); //6번째 인덱스(5)인것
+			$("li").eq(5).css("background-color", "red"); //6번째 인덱스(5)인것
+			
+			//$("li:lt(4)").css("font-weight", "bold"); //5번째 인덱스(4)보다 작은것들
+			$("li").slice(0,4).css("font-weight", "bold"); //1번째~4번째까지 인덱스(0)부터 인덱스(4)까지 마지막 4는 포함 안해줌
+			//$("li:gt(4)").css("font-size", "0.5em"); //5번째 인덱스(4)보다 큰것들
+			$("li").slice(5).css("font-size", "0.5em"); //6번째부터 마지막까지 인덱스(5)부터~마지막까지
+			
+			//ex1 테이블 색상 바꾸기
+			$("tr:even", "#ex1").css("background-color", "lightgrey");
+			//$("tr").even().css("background-color", "lightgrey");
+			$("tr:odd", "#ex1").css("background-color", "white");
+			//$("tr").odd().css("background-color", "white");
+			
+			//ex2 테이블 색상 바꾸기
+			//tr 안에 th가 있고 th의 색을 바꾼것이기 때문에 아래에 tr의 배경색을 바꿔줘도 상관없음
+			$("th", "#ex2").css("background-color", "black").css("color", "white");
+			$("tr:odd", "#ex2").css("background-color", "white");
+			$("tr:even", "#ex2").css("background-color", "lightgrey");
+			//even이 더 아래에 있으면 첫번째 검정색배경이 안먹음 (아래로 갈수록 우선순위가 높기때문에)
+			//$("tr", "#ex2").first().css("background-color", "black").css("color", "white");
+			
+		});
+	</script>
+</head>
+<body>
+	<ul>
+		<li>one</li>
+		<li>two</li>
+		<li>three</li>
+		<li>four</li>
+		<li>five</li>
+		<li>six</li>
+		<li>seven</li>
+		<li>eight</li>
+		<li>nine</li>
+	</ul>
+	
+	<hr>
+	
+	<table id="ex1">
+		<tr>
+			<td>one</td>
+			<td>62만원</td>
+		</tr>
+		<tr>
+			<td>two</td>
+			<td>45만원</td>
+		</tr>
+		<tr>
+			<td>three</td>
+			<td>33만원</td>
+		</tr>
+		<tr>
+			<td>four</td>
+			<td>72만원</td>
+		</tr>
+		<tr>
+			<td>five</td>
+			<td>77만원</td>
+		</tr>
+		<tr>
+			<td>six</td>
+			<td>54만원</td>
+		</tr>
+		<tr>
+			<td>seven</td>
+			<td>61만원</td>
+		</tr>
+		<tr>
+			<td>eight</td>
+			<td>52만원</td>
+		</tr>
+		<tr>
+			<td>nine</td>
+			<td>88만원</td>
+		</tr>
+	</table>
+	
+	<hr>
+	
+	<table id="ex2">
+		<tr>
+			<th>이름</th>
+			<th>주소</th>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>대전</td>
+		</tr>
+		<tr>
+			<td>진달래</td>
+			<td>서울</td>
+		</tr>
+		<tr>
+			<td>개나리</td>
+			<td>부산</td>
+		</tr>
+		<tr>
+			<td>무궁화</td>
+			<td>대구</td>
+		</tr>
+	</table>
+</body>
+</html>

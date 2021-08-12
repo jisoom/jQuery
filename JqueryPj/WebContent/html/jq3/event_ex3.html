@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		div {
+			border: 1px solid;
+			height: 150px;
+		}
+		
+		img {
+			width: 100px;
+			height: 100px;
+			margin: 5px;
+		}
+		
+		button {
+			visibility: hidden;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">	
+		var imgOriSrc = [];
+		var imgChaSrc = ["coffee.jpg", "computer.jpg", "lion.jfif"];
+		var imgStat = [];
+	
+		$(document).ready(function() {
+			for(var i=0 ; i<$("img").length ; i++) {
+				var currImg = $("img").eq(i);
+				imgOriSrc.push(currImg.attr("alt"));
+				imgStat.push(true);
+			}
+			
+			$("img").on({
+				mouseover : function() {
+					var currId = $(this).attr("id");
+					var idx = parseInt(currId.substr(6, currId.length-1));
+					$(this).attr("src", "../../images/" + imgChaSrc[idx - 1]);
+					$(this).attr("alt", imgChaSrc[idx - 1]);
+				}
+				
+				, mouseout : function() {
+					var currId = $(this).attr("id");
+					var idx = parseInt(currId.substr(6, currId.length-1));
+					$(this).attr("src", "../../images/" + imgOriSrc[idx - 1]);
+					$(this).attr("alt", imgOriSrc[idx - 1]);
+				}
+				
+				, dblclick : function name() {
+					$(this).hide();
+					
+					var idx = parseInt($(this).attr("id").substr(6, $(this).attr("id").length-1));
+					imgStat[idx - 1] = false;
+					
+					showButton();
+				}
+			});
+			
+			$("#tmpButton").click(function() {
+				$("img").show();
+				$(this).css("visibility", "hidden");
+			});
+		});
+		
+		function showButton() {
+			//case1 - 배열 없이 확인
+			/* 
+			var cntHiddenImg = 0;
+			$("img").each(function(idx, item) {
+				if($(item).css("display") == "none") {
+					cntHiddenImg++;
+				}
+			})
+			
+			if($("img").length != cntHiddenImg) {
+				return;
+			} else {
+				$("#tmpButton").css("visibility", "visible");
+			}
+			 */
+			
+			//case2 - 선택자로 확인
+			/* 
+			//철자 틀리면 결과가 달라짐 - 하드코딩 느낌..
+			var cntHiddenImg = $("img[style = 'display: none;']").length;
+			if 로직
+			 */
+			
+			//case3
+			for(var i=0 ; i<imgStat.length ; i++) {
+				if(imgStat[i] == true) {
+					return;
+				}
+			}
+			
+			$("#tmpButton").css("visibility", "visible");
+		}
+	</script>
+</head>
+
+<body>
+	<div>
+		<img id="tmpImg1" alt="apple.jpg" src="../../images/apple.jpg">
+		<img id="tmpImg2" alt="cat.jpg" src="../../images/cat.jpg">
+		<img id="tmpImg3" alt="cloud.jpg" src="../../images/cloud.jpg">
+	</div>
+	<br>
+	<button id="tmpButton" type="button">보이기</button>
+</body>
+
+</html>

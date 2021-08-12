@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		table {
+			width: 100%;
+		}
+		table, td {
+			border: 1px solid white;
+			border-collapse: collapse;
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+/*			$("td:first-child").css("background-color", "gray");
+			$("td:nth-child(2)").css("background-color", "lightgray");
+			$("td:last-child").css("background-color", "darkgray"); */
+			
+			//3의 배수만큼
+			$("td:nth-child(3n-1)").css("background-color", "gray");
+			$("td:nth-child(3n)").css("background-color", "lightgray");
+			$("td:nth-child(3n+1)").css("background-color", "darkgray");
+			$("tr:first-child > td").css({ //td에서 이미 색이 들어갔기 때문에 tr의 색을 바꾸면 안먹힘
+				"background-color" : "black"
+				, "color" : "white"
+			});
+			
+			
+		})
+	</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>이름</td>
+			<td>주소</td>
+			<td>전화번호</td>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>대전</td>
+			<td>010-111-111</td>
+		</tr>
+		<tr>
+			<td>진달래</td>
+			<td>서울</td>
+			<td>010-222-222</td>
+		</tr>
+		<tr>
+			<td>개나리</td>
+			<td>부산</td>
+			<td>010-333-333</td>
+		</tr>
+		<tr>
+			<td>무궁화</td>
+			<td>대구</td>
+			<td>010-444-444</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

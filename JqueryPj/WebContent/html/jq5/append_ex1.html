@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>append() 사용하기</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		
+		var imgRootPath = "../../images/";
+		$(document).ready(function () {
+			$("p").css("cursor", "pointer"); //p태그 커서 포인터로 바꿔줌
+			
+			//p태그 클릭시 p태그 안에 이미지 생기기
+			$("p").click(function () {
+				var addObj = $("<img>"); //img태그 생성 {}해서 속성값 넣어줄 수도 있음
+				var objStr = this.title; //$(this).attr("title");
+				var objSrc = imgRootPath + objStr; //img태그 src
+				var objAlt = $(this).text(); //img태그 alt
+				
+				addObj.attr("alt", objAlt); //img태그의 alt속성 넣어주기
+				addObj.attr("src", objSrc); //img태그의 src 속성에 만들어준 소스 넣어줌
+				addObj.attr("height", "200px"); //img 크기조정(css에서 줘도 됨)
+				addObj.attr("width", "200px"); //img 크기조정(css에서 줘도 됨)
+				$(this).append(addObj); //prepend하면 p태그 앞에 img 생성됨
+				//before하면 img생성되고 한줄 띄워진 후 p태그
+				//after하면 p태그 뒤에 한줄 띄워진 후 img생성됨
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<p title="tulip.jpg">튜울립</p>
+	<p title="dog1.jpg">강아지</p>
+	<p title="cat.jpg">고양이</p>
+	<p title="flower2.jpg">벚꽃</p>
+</body>
+</html>

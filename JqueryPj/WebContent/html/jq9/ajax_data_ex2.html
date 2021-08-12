@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		table {
+			width: 100%;
+			border: 3px double;
+			border-collapse: collapse;
+		}
+		
+		th, td {
+			border: 1px solid;
+		}
+		td {
+			text-align: center;
+		}
+		th {
+			background-color: lightgray;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		function select() {
+			
+			$.ajax({
+				url : "../jq9_data/cd_catalog.xml"
+				//,type : "post"
+				//,data : ""
+				,dataType : "xml"
+				,success : function (data) {
+					if($("#title:checked").prop("checked")) { //노래제목만
+						makeTitleTable(data);
+					
+					}else if($("#all:checked").prop("checked")){ //노래 정보 목록
+						makeTable(data);	
+					}else if($("#two:checked").prop("checked")) {
+						makeTableTwo(data);
+					}
+				}
+				,error : function (xhr) {
+					console.log(xhr);
+					alert("오류발생");
+				}
+			});
+		}
+		
+		function selReset() {
+			var strHtml = "<table>"
+							+ "<tr>"
+							+ "<th>번호</th>"
+							+ "<th>제목</th>"
+							+ "</tr>"
+							+ "<tr>"
+							+ "<td colspan='2'>조회 버튼을 클릭 하세요.</td>"
+							+ "</tr>"
+							+ "</table>"
+			$("#result").html(strHtml);
+			$("#title").prop("checked", "checked");
+			
+		}
+		
+		function makeTitleTable(data) {
+			var strHtml = "<table>"
+							+ "<tr>"
+							+ "<th>번호</th>"
+							+ "<th>제목</th>"
+							+ "</tr>";
+							
+			var cd = data.getElementsByTagName("CD");	
+			
+			for(var i =0; i < cd.length; i++) {
+				var title = cd[i].getElementsByTagName("TITLE")[0].innerHTML;
+				console.log(title);
+				strHtml += "<tr>"
+						+ "<td>" + (i+1) + "</td>"
+						+ "<td>" + title + "</td>"
+						+ "</tr>";
+			}
+			strHtml += "</table>";
+			$("#result").html(strHtml);
+			
+		}
+		
+		function makeTable(data) {
+			var strHtml = "<table>"
+				+ "<tr>"
+				+ "<th>번호</th>"
+				+ "<th>제목</th>"
+				+ "<th>가수</th>"
+				+ "<th>국가</th>"
+				+ "<th>회사</th>"
+				+ "<th>가격</th>"
+				+ "<th>발행년도</th>"
+				+ "</tr>";
+				
+			var cd = data.getElementsByTagName("CD");	
+			for(var i=0; i < cd.length; i++) {
+				var title = cd[i].getElementsByTagName("TITLE")[0].innerHTML;
+				var artist = cd[i].getElementsByTagName("ARTIST")[0].innerHTML;
+				var country = cd[i].getElementsByTagName("COUNTRY")[0].innerHTML;
+				var company = cd[i].getElementsByTagName("COMPANY")[0].innerHTML;
+				var price = cd[i].getElementsByTagName("PRICE")[0].innerHTML;
+				var year = cd[i].getElementsByTagName("YEAR")[0].innerHTML;
+				
+				strHtml += "<tr>"
+					+ "<td>" + (i+1) + "</td>"
+					+ "<td>" + title + "</td>"
+					+ "<td>" + artist + "</td>"
+					+ "<td>" + country + "</td>"
+					+ "<td>" + company + "</td>"
+					+ "<td>" + price + "</td>"
+					+ "<td>" + year + "</td>"
+					+ "</tr>";
+			}	
+				
+			strHtml += "</table>";
+			$("#result").html(strHtml);
+			
+		}
+		
+		function makeTableTwo(data) {
+			//catalog1.xml 넣기
+		}
+	</script>
+</head>
+<body>
+	<input type="radio" id="title" name="music" checked="checked"><label for="title">제목</label>
+	<input type="radio" id="all" name="music"><label for="all">전체</label>
+	<input type="radio" id="two" name="music"><label for="two">2번째 조회</label>
+	<button type="button" onclick="select()">조회</button>
+	
+	<button type="button" onclick="selReset()">초기화</button>
+	<hr>
+	<div id="result">
+		<table>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+			</tr>
+			<tr>
+				<td colspan="2">조회 버튼을 클릭 하세요.</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

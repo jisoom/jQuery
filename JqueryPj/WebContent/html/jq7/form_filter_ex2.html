@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>form_filter</title>
+	<style type="text/css">
+		#spring {
+			width: 100px;
+		}
+	</style>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			//[전송] 버튼을 클릭하면...
+			$("#btn1", "#ex1").click(function () {
+				
+				var chkText = "";
+				var chkVal = "";
+				$("span", "#ex1").text(""); // span안의 text 없애줌
+				
+				//[체크박스]에서 체크된 거를 찾아서 더해줌
+				$("[name = chk]:checked").each(function () {
+					chkText = $(this).next("label").text();
+					chkVal += chkText + "(" + $(this).val()+ ")" + ", ";
+				});
+				
+				//마지막 글자 ,이랑 공백 제거해줌
+				chkVal = chkVal.substr(0, chkVal.length-2);
+				//span에 추가해줌
+				$("span" , "#ex1").append(chkVal);
+				
+				//아무것도 선택하지 않았으면...
+				if($("span", "#ex1").text() == "") {
+					alert("체크박스를 선택해주세요");
+				}else {
+					alert($("span", "#ex1").text());
+				}
+			});
+			
+			//[초기화]를 누르면...
+			$("#btn2", "#ex1").click(function () {
+				$("span", "#ex1").text("");
+				$("[name = chk]:checked").each(function () {
+					//체크된거 해제해주기
+					$(this).prop("checked", false);
+				});
+			});
+			
+			/******************************************************/
+			//[전송] 버튼을 클릭하면...
+			$("#btn1", "#ex2").click(function () {
+				
+				var selVal = "";
+				$("span", "#ex2").text(""); //span에 있는 text 초기화
+				
+				//[셀렉트 박스]에서 selected 되있는거의 값 가져오기
+				$(":selected", "#spring").each(function () {
+					selVal += $(this).val() + ", ";
+				});
+				selVal = selVal.substr(0, selVal.length-2);
+				$("span", "#ex2").append(selVal);
+				
+				//아무것도 선택하지 않았으면...
+				if(selVal == "") {
+					alert("셀렉트 박스를 선택해 주세요.");
+				}
+			});
+			
+			//[초기화]를 누르면...
+			$("#btn2", "#ex2").click(function () {
+				$("span", "#ex2").text("");
+				$(":selected", "#spring").each(function () {
+					//셀렉트된거 해제해주기
+					$(this).prop("selected", false);
+				});
+				
+			});
+			
+			
+			
+			
+			
+		});
+	</script>
+</head>
+<body>
+	<form id="ex1">
+		취미 : <input type="checkbox" id="chk1" value="01" name="chk"><label for="chk1">여행</label>
+			 <input type="checkbox" id="chk2" value="02" name="chk"><label for="chk2">장기</label>
+			 <input type="checkbox" id="chk3" value="03" name="chk"><label for="chk3">바둑</label>
+			 <input type="checkbox" id="chk4" value="04" name="chk"><label for="chk4">독서</label>
+			 <input type="checkbox" id="chk5" value="05" name="chk"><label for="chk5">낚시</label>
+			 <!-- 결과 : 여행(01) -->
+			 <br><br>
+			 <button type="button" id="btn1">전송</button>
+			 <button type="button" id="btn2">초기화</button>
+			 <br><br>
+			 선택 결과 : <span></span>
+	</form>	
+	
+	<hr style="border: 2px solid gold">
+	<br>
+	<form id="ex2">
+		봄소식 :
+		<select name="spring" id="spring" multiple size="6">
+			<option>개나리</option>
+			<option>진달래</option>
+			<option>민들레</option>
+			<option>벚꽃</option>
+			<option>목련</option>
+			<option>철쭉</option>
+		</select>
+		<br><br>
+		
+		<button type="button" id="btn1">전송</button>
+		<button type="button" id="btn2">초기화</button>
+		
+		
+		<div>
+			<br>
+			선택  결과 : <span id="result"></span>
+		</div>
+		
+	</form>
+	
+</body>
+</html>

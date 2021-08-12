@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			//input요소(form 선택자)
+			$(":input").css("border", "1px solid lime")
+			.css("background-color", "pink");
+			//button 요소와 button 타입의 input
+			$(":button").css("background-color", "lightblue");
+			//button 타입의 input
+			$("input[type='button']").css("background-color", "black")
+			.css("color", "white");
+			//타입이 submit인 요소
+			$(":submit").css("background-color", "green");
+			//타입이 reset인 요소
+			$(":reset").css("background-color", "yellow");
+			//타입이 text, password인 요소
+			$(":text, :password").css("border-color", "blue");
+			//타입이 file, image인 요소
+			$(":file, :image").css("border-color", "red");
+		})
+	</script>
+</head>
+<body>
+	<form>
+		Text: <input type="text"><br>
+		Password: <input type="password"><br>
+		Radio: <input type="radio" id="rdA" name="rd"><label for="rdA">A</label>
+			   <input type="radio" id="rdB" name="rd"><label for="rdB">B</label><br>
+		Checkbox: <input type="checkbox" id="chk1"><label for="chk1">1</label>
+				  <input type="checkbox" id="chk2"><label for="chk2">2</label><br>
+		Textarea: <br><textarea rows="10" cols="25"></textarea><br>
+		Image: <input type="image" src="../../images/lion.jpg" width="150px"><br>
+		File: <input type="file"><br>
+		Buttons: <button type="button">Normal</button>
+				 <button type="submit">submit</button>
+				 <button type="reset">reset</button><br>
+		InputButtons: <input type="button" value="Normal">
+				 	  <input type="submit" value="submit">
+				   	  <input type="reset" value="reset">
+	
+	</form>
+</body>
+</html>

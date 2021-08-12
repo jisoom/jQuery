@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../../js/lib/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		//문서가 준비가 되면.
+		$(document).ready(function() {
+			//h2요소들에게 클릭 이벤트 부여
+			//1) javascript 방식
+			//   doucment.getElementById("tmp").onclick = function(){}; //1개의 요소에만 이벤트 부여
+			
+			//2) jquery 사용
+			$("h2").click(function() {
+				//this.hide(); ==>이렇게 쓰면 안됨
+				$(this).hide(); //click안에서 this : 클릭된 것
+			});
+		});
+	</script>
+</head>
+<body>
+	<h2>클릭하면 사라져요 1</h2>
+	<h2>클릭하면 사라져요 2</h2>
+	<h2>클릭하면 사라져요 3</h2>
+	<h2>클릭하면 사라져요 4</h2>
+	<h2>클릭하면 사라져요 5</h2>
+	<h2>클릭하면 사라져요 6</h2>
+	<h2>클릭하면 사라져요 7</h2>
+	<h2>클릭하면 사라져요 8</h2>
+	<h2>클릭하면 사라져요 9</h2>
+</body>
+</html>
