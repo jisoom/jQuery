@@ -1,0 +1,37 @@
+@charset "UTF-8";
+<style type="text/css">
+	div.container > div {
+/* 		border: 3px solid #999999; */
+	}
+	div.form-group {
+		padding-bottom: 15px;
+		border-bottom: 1px dashed #AAAAAA;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+
+	div.lastRow {
+		border-bottom: 0px;
+	}
+	div.bottom5 {
+		margin-bottom: 5px;
+	}
+		
+	button.btn-secondary{
+		background-color: black;
+		color: white;
+	}
+	.border5 {
+		border: 5px solid lightgray;
+		padding: 15px;
+	}
+
+	.btnDiv {
+		display: flex;
+		width: 100%;
+		justify-content: center;
+	}
+	.btnDiv button {
+		margin: 0 10px; 
+	}
+</style>

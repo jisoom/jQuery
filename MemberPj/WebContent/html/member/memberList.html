@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>회원 조회</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.allDiv {
+			height: 100vh;
+			border: 5px solid lightgray;
+			padding: 20px;
+		}
+		input {
+			margin-bottom: 10px;
+			width: 500px;
+			padding: 2px;
+		}
+		table {
+			width: 70%;
+			margin: 10px auto;
+			text-align: center;
+		}
+		tr {
+			cursor: pointer;
+		}
+		tr, th, td {
+			text-align: center;
+		}
+		tr, th, td {
+			padding: 10px;
+		}
+		table, tr, td {
+			border: 2px solid lightgray;
+		}
+		button {
+			width: 200px;
+		}
+		.fmDiv, .tbDiv, .btnDiv {
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+	</style>
+	<script type="text/javascript">
+	
+		//신규등록 화면으로 이동
+		function moveRegisterPage() {
+			var fm = document.getElementById("fm");
+			fm.action = "http://localhost/MemberPj/html/member/joinForm.html";
+			fm.method = "post";
+			fm.submit();
+		}
+		
+		//목록조회
+		function srchList(){
+			$.ajax({
+				url: "/JqueryPj/MemberServlet"
+				,type: "post"
+				,data: $("#fm").serialize()
+				,dataType: "json"
+				,success: function(data){
+					console.log(data);
+					makeTable(data);
+				}
+				,error: function(xhr){
+					console.log(xhr);
+					alert("오류발생");
+				}
+			});
+		}
+		
+		
+		function makeTable(data){
+			$("#tb tbody").empty();
+			
+			var strHtml = "";
+			for(var i=0 ; i<data.length ; i++){
+				strHtml += "<tr>       "
+						+ "	<td>" + data[i].id + "</td>"
+						+ "	<td>" + data[i].name + "</td>"
+						+ "	<td>" + data[i].hp + "</td>"
+						+ "	<td>" + data[i].birth + "</td>"
+						+ "</tr>      ";
+			}
+			if(data.length == 0)
+				strHtml += "<tr><td colspan=\"4\">결과가 존재하지 않습니다.</td></tr>"
+			
+			$("#tb tbody").html(strHtml);
+			
+		}
+	</script>
+</head>
+<body>
+	<div class="allDiv">
+		<h2 class="text-center">검색조건</h2>
+		<br>
+		<div class="fmDiv">
+			<form id="fm">
+				I D : <input type="text" name="memId"><br>
+				이름 : <input type="text" name="memName"><br>
+				<button type="button" class="btn btn-info" onclick="srchList()">검색</button>
+			</form>
+		</div>
+		<hr style="border :1px dashed lightgray;">
+		<h2 class="text-center">검색결과</h2>
+		<br>
+		<div class="tbDiv">
+			<table border="1" id="tb">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>이름</th>
+						<th>핸드폰번호</th>
+						<th>생년월일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="4">검색 버튼을 누르세요.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="btnDiv">
+			<button type="button" class="btn btn-info" onclick="moveRegisterPage()">신규등록</button>
+		</div>
+	</div>	
+</body>
+</html>
